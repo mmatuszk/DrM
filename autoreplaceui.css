@@ -5,3 +5,7 @@
 .row-alt {
   background-color: whitesmoke;
 }
+
+.find-replace-input {
+  width: 90%;
+}
