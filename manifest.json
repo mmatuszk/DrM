@@ -1,0 +1,32 @@
+{
+  "manifest_version": 2,
+  
+  "name": "DrM",
+  "description": "Extensions and enhancements to Centriq EHR",
+  "version": "1.0",
+  
+  "browser_action": {
+    "default_icon": "drm-enabled-38.png",
+    "default_popup": "popup.html"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["*://hlapp/*", "*://localhost/*"],
+      "js": ["jquery-2.1.4.js", "tools.js", "autoreplace.js", "workcenter.js",
+          "shortcuts.js", "hllocations.js", "content.js"]
+    }
+  ],
+  
+  "background": {
+    "scripts": ["background.js"]
+  },
+  
+  "options_page": "options.html",
+  
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage"
+    ]
+}
