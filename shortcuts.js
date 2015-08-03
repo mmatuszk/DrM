@@ -35,6 +35,10 @@ var KeyboardShortcuts = (function() {
       state = "";
     }
     
+    setTimeout(function() {
+      state = "";
+    }, 1000);
+    
     // $('#status').html(state);
   };
   
@@ -43,6 +47,7 @@ var KeyboardShortcuts = (function() {
       state = "";
       $('#status').html(state);
     }
+    console.log(e.which);
   };
   
   pub.bind = function() {
