@@ -13,9 +13,10 @@ function saveAutoReplaceOptions(map) {
 function restoreAutoReplaceOptions() {
   chrome.storage.sync.get('autoReplaceMap',
     function(items) {
-      console.log(items.autoReplaceMap);
-      AutoReplaceUI.setMap(items.autoReplaceMap);
-      AutoReplaceUI.display();
+      if (items.autoReplaceMap !== undefined) {
+        AutoReplaceUI.setMap(items.autoReplaceMap);
+        AutoReplaceUI.display();
+      }
     }
   );
 }

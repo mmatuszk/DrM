@@ -92,7 +92,11 @@ var AutoReplaceUI = (function (){
   };
   
   pub.setMap = function(newMap) {
-    map = newMap;
+    if (newMap === undefined || newMap === null) {
+      map = {};
+    } else {
+      map = newMap;  
+    }
   };
 
   pub.display = function() {
