@@ -32,5 +32,18 @@ var WorkCenter = (function() {
     }
   };
   
+  pub.processOpenVisit = function() {
+    var $e; 
+    
+    $e = $('.segment:contains(Transcribed Notes)');
+    if ($e.length == 1) {
+        console.log($e);
+        console.log('removing');
+        $e.remove();
+        //$('#ClinicalSummary-expandable-section').prepend($e);
+        $('#rightSide').prepend($e);
+    }    
+  };  
+  
   return pub;
 })(); 

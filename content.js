@@ -25,7 +25,9 @@ KeyboardShortcuts.registerFunction('gs', HLLocations.goSurgery, 'Go to Surgeries
 KeyboardShortcuts.registerFunction('gt', HLLocations.goOrders, 'Go to Orders Tracking');
 KeyboardShortcuts.registerFunction('gv', HLLocations.goVitalSigns, 'Go to Vital Signs');
 KeyboardShortcuts.registerFunction('gw', HLLocations.goPhysicianWorkCenter, 'Go to Physician Work Center');
+KeyboardShortcuts.registerFunction('q', WorkCenter.processOpenVisit, 'Move Transcription under "Sign" in open visits');
 KeyboardShortcuts.registerFunction('z', WorkCenter.processResultsList, 'Add "Copy Name" button in Work Center Results');
+
 KeyboardShortcuts.bind();
 
 chrome.runtime.onMessage.addListener(
