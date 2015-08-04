@@ -9,7 +9,7 @@
 function GM_setClipboard(text) {
   var msg = {};
   
-  msg.type = 'copy';
+  msg.cmd = 'copy';
   msg.text = text;
   chrome.runtime.sendMessage(msg);
 }

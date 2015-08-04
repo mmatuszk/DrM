@@ -13,5 +13,13 @@ chrome.runtime.onMessage.addListener(
                 "from the extension");
     if (request.cmd == "ConfigAutoReplace") {
       console.log('Config Auto Replace')
+    } else if (request && request.cmd == 'copy') {
+        var input = document.createElement('textarea');
+        document.body.appendChild(input);
+        input.value = request.text;
+        input.focus();
+        input.select();
+        document.execCommand('Copy');
+        input.remove();
     }
   });
