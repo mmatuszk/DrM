@@ -14,6 +14,39 @@ var WorkCenter = (function() {
       fname = name.split(',')[1].trim().split(' ')[0].trim();
       GM_setClipboard(lname+', '+fname);
   }
+  
+  function onClickCopyResultsList(e) {
+    var res, str;
+    var $table, $tbody, $panelResults, $results;
+    
+    $table = $(e.target).parent().parent().next().find('table');
+    $tbody = $table.find('tbody');
+    $panelResults = $tbody.filter(function(){
+      var $attr = $(this).attr('id');
+      if( $attr && $attr.match(/Panel-\d\d\d\d\d/) ) {
+        return true;}
+      }).find('label');
+      
+    res = [];
+    for (var i = 0; i < $panelResults.length; i++) {
+      res[res.length] = $panelResults.eq(i).text().trim();
+    }
+    
+    $results = $table.find('.TestName:not(.panelColumn):not(.panelborder)');
+    for (var i = 0; i < $results.length; i++) {
+      res[res.length] = $results.eq(i).text().trim();
+    }
+    
+    str = "";
+    for (var i = 0; i < res.length; i++) {
+      str += res[i];
+      if (i < res.length-1) {
+        str += ", "; 
+      }
+    }
+    
+    GM_setClipboard(str);
+  }
 
   var pub = {};
 
@@ -26,8 +59,16 @@ var WorkCenter = (function() {
     for (var i = 1; i < $links.length; i++) {
       if ($links.eq(i).find('.copyname').length == 0) {
         // only add the button if not already there
-        $btn = $links.eq(i).prepend('<input type="button" class="copyname" value="Copy Name" />');
-        $btn .click(onClickCopyName);      
+        // only add the button if not already there
+        $btn = $('<input type="button" class="copyname" value="Copy Name" />');
+        // $btn = $('<a href="#" onclick="onClickCopyName()" class="copyname">Copy Name</a>');
+        $links.eq(i).prepend($btn);
+        $btn.click(onClickCopyName);
+        
+        $btn = $('<input type="button" class="copyresults" value="Copy Results" />');
+        // $btn = $('<a href="#" onclick="onClickCopyResultsList()" class="copyresults">Copy Results</a>');
+        $links.eq(i).prepend($btn);
+        $btn.click(onClickCopyResultsList);      
       }
     }
   };
@@ -46,4 +87,4 @@ var WorkCenter = (function() {
   };  
   
   return pub;
-})(); 
+})();
